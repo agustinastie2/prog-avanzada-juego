@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://2j56rhm6daf3"]
+
+[ext_resource type="Script" uid="uid://d0wak1imty0os" path="res://levels/hub_nexo.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://cxryj8lptvdw" path="res://player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://c6lpx2g2rphw5" path="res://ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://levels/checkpoint.tscn" id="4_checkpoint"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_l"]
+size = Vector2(440, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_r"]
+size = Vector2(440, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_l"]
+size = Vector2(20, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_r"]
+size = Vector2(20, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceiling"]
+size = Vector2(1040, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pit_l"]
+size = Vector2(20, 260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pit_r"]
+size = Vector2(20, 260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate"]
+size = Vector2(120, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(40, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drop"]
+size = Vector2(160, 40)
+
+[node name="HubNexo" type="Node2D" unique_id=308970197]
+script = ExtResource("1_script")
+
+[node name="RoomGeometry" type="StaticBody2D" parent="." unique_id=109853386]
+collision_mask = 0
+
+[node name="FloorLeft" type="CollisionShape2D" parent="RoomGeometry" unique_id=141130875]
+position = Vector2(-280, 90)
+shape = SubResource("RectangleShape2D_floor_l")
+
+[node name="FloorRight" type="CollisionShape2D" parent="RoomGeometry" unique_id=1194628765]
+position = Vector2(280, 90)
+shape = SubResource("RectangleShape2D_floor_r")
+
+[node name="WallLeft" type="CollisionShape2D" parent="RoomGeometry" unique_id=894574889]
+position = Vector2(-510, -150)
+shape = SubResource("RectangleShape2D_wall_l")
+
+[node name="WallRight" type="CollisionShape2D" parent="RoomGeometry" unique_id=782664555]
+position = Vector2(510, -150)
+shape = SubResource("RectangleShape2D_wall_r")
+
+[node name="Ceiling" type="CollisionShape2D" parent="RoomGeometry" unique_id=1018040470]
+position = Vector2(0, -410)
+shape = SubResource("RectangleShape2D_ceiling")
+
+[node name="PitWallLeft" type="CollisionShape2D" parent="RoomGeometry" unique_id=1108662938]
+position = Vector2(-70, 220)
+shape = SubResource("RectangleShape2D_pit_l")
+
+[node name="PitWallRight" type="CollisionShape2D" parent="RoomGeometry" unique_id=27786935]
+position = Vector2(70, 220)
+shape = SubResource("RectangleShape2D_pit_r")
+
+[node name="VaultGate" type="StaticBody2D" parent="." unique_id=1221720978]
+position = Vector2(0, 90)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VaultGate" unique_id=1416330923]
+shape = SubResource("RectangleShape2D_gate")
+
+[node name="LeftDoor" type="Area2D" parent="." unique_id=88996555]
+position = Vector2(-470, 40)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor" unique_id=488139631]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="RightDoor" type="Area2D" parent="." unique_id=1278824137]
+position = Vector2(470, 40)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDoor" unique_id=422585142]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="VaultDropZone" type="Area2D" parent="." unique_id=1042392636]
+position = Vector2(0, 330)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VaultDropZone" unique_id=692076498]
+shape = SubResource("RectangleShape2D_drop")
+
+[node name="Checkpoint" parent="." unique_id=213324457 instance=ExtResource("4_checkpoint")]
+position = Vector2(0, 80)
+
+[node name="Player" parent="." unique_id=1258147618 instance=ExtResource("2_player")]
+position = Vector2(0, 40)
+
+[node name="HUD" parent="." unique_id=1238382520 instance=ExtResource("3_hud")]

@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://17hj66531cno"]
+
+[ext_resource type="Script" uid="uid://bal3lcsva8rm8" path="res://levels/curve_wing.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://cxryj8lptvdw" path="res://player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://djwlyx8n138k2" path="res://levels/hazard_spikes.tscn" id="3_spikes"]
+[ext_resource type="PackedScene" uid="uid://dg8241h6pxwtk" path="res://levels/updraft_wind.tscn" id="4_wind"]
+[ext_resource type="PackedScene" uid="uid://c6lpx2g2rphw4" path="res://enemies/flying_spark.tscn" id="5_spark"]
+[ext_resource type="PackedScene" uid="uid://c6lpx2g2rphw5" path="res://ui/hud.tscn" id="7_hud"]
+[ext_resource type="PackedScene" path="res://levels/checkpoint.tscn" id="8_checkpoint"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_l"]
+size = Vector2(300, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_r"]
+size = Vector2(460, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_pit"]
+size = Vector2(640, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_divider"]
+size = Vector2(20, 250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_l"]
+size = Vector2(20, 580)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_r"]
+size = Vector2(20, 580)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceiling"]
+size = Vector2(1450, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plat_mid"]
+size = Vector2(80, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(40, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate"]
+size = Vector2(20, 200)
+
+[node name="CurveWing" type="Node2D" unique_id=631486342]
+script = ExtResource("1_script")
+
+[node name="RoomGeometry" type="StaticBody2D" parent="." unique_id=1222742244]
+collision_mask = 0
+
+[node name="FloorLeft" type="CollisionShape2D" parent="RoomGeometry" unique_id=1912198916]
+position = Vector2(-350, 90)
+shape = SubResource("RectangleShape2D_floor_l")
+
+[node name="FloorRight" type="CollisionShape2D" parent="RoomGeometry" unique_id=490856420]
+position = Vector2(720, 90)
+shape = SubResource("RectangleShape2D_floor_r")
+
+[node name="FloorPit" type="CollisionShape2D" parent="RoomGeometry" unique_id=1310033244]
+position = Vector2(170, 210)
+shape = SubResource("RectangleShape2D_floor_pit")
+
+[node name="Divider" type="CollisionShape2D" parent="RoomGeometry" unique_id=1300519285]
+position = Vector2(-210, -26)
+shape = SubResource("RectangleShape2D_divider")
+
+[node name="WallLeft" type="CollisionShape2D" parent="RoomGeometry" unique_id=1960868094]
+position = Vector2(-510, -200)
+shape = SubResource("RectangleShape2D_wall_l")
+
+[node name="WallRight" type="CollisionShape2D" parent="RoomGeometry" unique_id=1010514774]
+position = Vector2(960, -200)
+shape = SubResource("RectangleShape2D_wall_r")
+
+[node name="Ceiling" type="CollisionShape2D" parent="RoomGeometry" unique_id=1026878921]
+position = Vector2(225, -510)
+shape = SubResource("RectangleShape2D_ceiling")
+
+[node name="PlatformMid" type="CollisionShape2D" parent="RoomGeometry" unique_id=1655663358]
+position = Vector2(-100, -92)
+shape = SubResource("RectangleShape2D_plat_mid")
+
+[node name="ExitDoor" type="Area2D" parent="." unique_id=1182559774]
+position = Vector2(-480, 40)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor" unique_id=1793937326]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="ArenaGate" type="StaticBody2D" parent="." unique_id=969266322]
+position = Vector2(490, -20)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaGate" unique_id=1016788]
+shape = SubResource("RectangleShape2D_gate")
+
+[node name="Spikes1" parent="." unique_id=433323861 instance=ExtResource("3_spikes")]
+position = Vector2(170, 200)
+width = 640.0
+
+[node name="UpdraftWind1" parent="." unique_id=488597929 instance=ExtResource("4_wind")]
+position = Vector2(-320, 80)
+width = 70.0
+height = 240.0
+
+[node name="UpdraftWind2" parent="." unique_id=1279428609 instance=ExtResource("4_wind")]
+position = Vector2(-10, 200)
+width = 70.0
+height = 360.0
+
+[node name="ArenaPlatform1" type="StaticBody2D" parent="." unique_id=652711048]
+position = Vector2(600, 10)
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ArenaPlatform1" unique_id=2082216694]
+polygon = PackedVector2Array(-35, -6, 35, -6, 35, 6, -35, 6)
+
+[node name="ArenaPlatform2" type="StaticBody2D" parent="." unique_id=1405660727]
+position = Vector2(800, -20)
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ArenaPlatform2" unique_id=1907167980]
+polygon = PackedVector2Array(-35, -6, 35, -6, 35, 6, -35, 6)
+
+[node name="FlyingSpark1" parent="." unique_id=1063296067 instance=ExtResource("5_spark")]
+position = Vector2(-220, -180)
+
+[node name="FlyingSpark2" parent="." unique_id=119210876 instance=ExtResource("5_spark")]
+position = Vector2(150, -160)
+
+[node name="Checkpoint1" parent="." unique_id=2131414375 instance=ExtResource("8_checkpoint")]
+position = Vector2(-380, 80)
+active_color = Color(0.9, 0.8, 0.1, 1)
+
+[node name="Checkpoint2" parent="." unique_id=2025426242 instance=ExtResource("8_checkpoint")]
+position = Vector2(-100, -100)
+active_color = Color(0.9, 0.8, 0.1, 1)
+
+[node name="Checkpoint3" parent="." unique_id=874981005 instance=ExtResource("8_checkpoint")]
+position = Vector2(553, 77)
+active_color = Color(0.9, 0.8, 0.1, 1)
+
+[node name="BossDoor" type="Area2D" parent="." unique_id=461950007]
+position = Vector2(880, 40)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossDoor" unique_id=2117307474]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="Player" parent="." unique_id=1096845973 instance=ExtResource("2_player")]
+position = Vector2(-400, 40)
+
+[node name="HUD" parent="." unique_id=677085620 instance=ExtResource("7_hud")]

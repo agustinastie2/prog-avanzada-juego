@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://c7eg3noqihi41"]
+
+[ext_resource type="Script" uid="uid://dhdl2uvpgcp5q" path="res://levels/straight_wing.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://cxryj8lptvdw" path="res://player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://djwlyx8n138k2" path="res://levels/hazard_spikes.tscn" id="3_spikes"]
+[ext_resource type="PackedScene" uid="uid://dg8241h6pxwtl" path="res://levels/moving_platform.tscn" id="4_platform"]
+[ext_resource type="PackedScene" uid="uid://c6lpx2g2rphw2" path="res://enemies/walking_smudge.tscn" id="5_smudge"]
+[ext_resource type="PackedScene" uid="uid://c6lpx2g2rphw4" path="res://enemies/flying_spark.tscn" id="6_spark"]
+[ext_resource type="PackedScene" uid="uid://c6lpx2g2rphw5" path="res://ui/hud.tscn" id="8_hud"]
+[ext_resource type="PackedScene" path="res://levels/checkpoint.tscn" id="9_checkpoint"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_l"]
+size = Vector2(300, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_r"]
+size = Vector2(480, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor_pit"]
+size = Vector2(570, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_l"]
+size = Vector2(20, 380)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_r"]
+size = Vector2(20, 380)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceiling"]
+size = Vector2(1350, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(40, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gate"]
+size = Vector2(20, 200)
+
+[node name="StraightWing" type="Node2D" unique_id=1541397004]
+script = ExtResource("1_script")
+
+[node name="RoomGeometry" type="StaticBody2D" parent="." unique_id=246315018]
+collision_mask = 0
+
+[node name="FloorLeft" type="CollisionShape2D" parent="RoomGeometry" unique_id=2144924422]
+position = Vector2(-350, 90)
+shape = SubResource("RectangleShape2D_floor_l")
+
+[node name="FloorRight" type="CollisionShape2D" parent="RoomGeometry" unique_id=228572434]
+position = Vector2(610, 90)
+shape = SubResource("RectangleShape2D_floor_r")
+
+[node name="FloorPit" type="CollisionShape2D" parent="RoomGeometry" unique_id=1161410246]
+position = Vector2(85, 230)
+shape = SubResource("RectangleShape2D_floor_pit")
+
+[node name="WallLeft" type="CollisionShape2D" parent="RoomGeometry" unique_id=1975627298]
+position = Vector2(-510, -100)
+shape = SubResource("RectangleShape2D_wall_l")
+
+[node name="WallRight" type="CollisionShape2D" parent="RoomGeometry" unique_id=1855432953]
+position = Vector2(860, -100)
+shape = SubResource("RectangleShape2D_wall_r")
+
+[node name="Ceiling" type="CollisionShape2D" parent="RoomGeometry" unique_id=855988453]
+position = Vector2(175, -310)
+shape = SubResource("RectangleShape2D_ceiling")
+
+[node name="ExitDoor" type="Area2D" parent="." unique_id=2124747330]
+position = Vector2(-480, 40)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor" unique_id=1649175221]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="ArenaGate" type="StaticBody2D" parent="." unique_id=207561001]
+position = Vector2(370, -20)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaGate" unique_id=749490092]
+shape = SubResource("RectangleShape2D_gate")
+
+[node name="Spikes1" parent="." unique_id=367743011 instance=ExtResource("3_spikes")]
+position = Vector2(-100, 220)
+width = 180.0
+
+[node name="Spikes2" parent="." unique_id=1729590608 instance=ExtResource("3_spikes")]
+position = Vector2(100, 220)
+width = 200.0
+
+[node name="Spikes3" parent="." unique_id=1358208960 instance=ExtResource("3_spikes")]
+position = Vector2(270, 220)
+width = 160.0
+
+[node name="MovingPlatform1" parent="." unique_id=1971862239 instance=ExtResource("4_platform")]
+position = Vector2(-150, 10)
+offset = Vector2(140, 0)
+duration = 3.2
+width = 70.0
+
+[node name="MovingPlatform2" parent="." unique_id=1294146955 instance=ExtResource("4_platform")]
+position = Vector2(150, -40)
+offset = Vector2(-140, 0)
+duration = 3.5
+width = 70.0
+
+[node name="WalkingSmudge" parent="." unique_id=1613931535 instance=ExtResource("5_smudge")]
+position = Vector2(-320, 60)
+
+[node name="FlyingSpark" parent="." unique_id=1613068795 instance=ExtResource("6_spark")]
+position = Vector2(0, -80)
+
+[node name="Checkpoint1" parent="." unique_id=1132354478 instance=ExtResource("9_checkpoint")]
+position = Vector2(-380, 80)
+active_color = Color(0.1, 0.5, 0.9, 1)
+
+[node name="Checkpoint2" parent="." unique_id=130410631 instance=ExtResource("9_checkpoint")]
+position = Vector2(442, 75)
+active_color = Color(0.1, 0.5, 0.9, 1)
+
+[node name="BossDoor" type="Area2D" parent="." unique_id=1265090174]
+position = Vector2(800, 40)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossDoor" unique_id=1967522944]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="Player" parent="." unique_id=2034227695 instance=ExtResource("2_player")]
+position = Vector2(-400, 40)
+
+[node name="HUD" parent="." unique_id=722340641 instance=ExtResource("8_hud")]

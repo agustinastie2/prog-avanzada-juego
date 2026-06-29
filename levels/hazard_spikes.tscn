@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://djwlyx8n138k2"]
+
+[ext_resource type="Script" path="res://levels/hazard_spikes.gd" id="1_script"]
+
+[node name="HazardSpikes" type="Area2D" groups=["hazards"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_script")

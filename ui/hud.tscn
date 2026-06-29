@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://ui/hud_visuals.gd" id="1_script"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="HUDVisuals" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseOverlay" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="PauseOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 0.960784, 0.960784, 0.8)
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseOverlay/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="PauseLabel" type="Label" parent="PauseOverlay/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "PAUSA"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseOverlay/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.1, 0.5, 0.9, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "RESUME"
+flat = true
+
+[node name="RestartButton" type="Button" parent="PauseOverlay/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.85, 0.08, 0.52, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "RESTART ROOM"
+flat = true
+
+[node name="QuitButton" type="Button" parent="PauseOverlay/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.4, 0.4, 0.4, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "QUIT TO HUB"
+flat = true

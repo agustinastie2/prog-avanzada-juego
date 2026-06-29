@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://djwlyx8n138k4"]
+
+[ext_resource type="Script" path="res://bosses/boss_articulated_ruler.gd" id="1_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_21t0n"]
+radius = 16.0
+
+[node name="BossArticulatedRuler" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_21t0n")

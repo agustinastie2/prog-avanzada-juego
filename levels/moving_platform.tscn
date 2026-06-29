@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dg8241h6pxwtl"]
+
+[ext_resource type="Script" path="res://levels/moving_platform.gd" id="1_script"]
+
+[node name="MovingPlatform" type="AnimatableBody2D"]
+collision_mask = 0
+script = ExtResource("1_script")

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cxryj8lptvdw6"]
+
+[ext_resource type="Script" path="res://levels/victory_screen.gd" id="1_script"]
+
+[node name="VictoryScreen" type="CanvasLayer"]
+script = ExtResource("1_script")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.960784, 0.960784, 0.960784, 1)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 42
+text = "TRAZOS DEL DESTINO"
+horizontal_alignment = 1
+
+[node name="SubTitleLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.0784314, 0.521569, 1)
+theme_override_font_sizes/font_size = 20
+text = "VICTORIA! The pigment of the margins has been restored."
+horizontal_alignment = 1
+
+[node name="SpaceLabel" type="Label" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "You completed the prototype!"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.1, 0.5, 0.9, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "RESTART"
+flat = true
+
+[node name="QuitButton" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.9, 0.1, 0.1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "QUIT"
+flat = true

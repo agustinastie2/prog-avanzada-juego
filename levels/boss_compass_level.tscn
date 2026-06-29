@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://levels/boss_compass_level.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://bosses/boss_compass_king.tscn" id="3_boss"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="4_hud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(840, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_l"]
+size = Vector2(20, 450)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_r"]
+size = Vector2(20, 450)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ceiling"]
+size = Vector2(880, 20)
+
+[node name="BossCompassLevel" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="RoomGeometry" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Floor" type="CollisionShape2D" parent="RoomGeometry"]
+position = Vector2(0, 90)
+shape = SubResource("RectangleShape2D_floor")
+
+[node name="WallLeft" type="CollisionShape2D" parent="RoomGeometry"]
+position = Vector2(-430, -135)
+shape = SubResource("RectangleShape2D_wall_l")
+
+[node name="WallRight" type="CollisionShape2D" parent="RoomGeometry"]
+position = Vector2(430, -135)
+shape = SubResource("RectangleShape2D_wall_r")
+
+[node name="Ceiling" type="CollisionShape2D" parent="RoomGeometry"]
+position = Vector2(0, -280)
+shape = SubResource("RectangleShape2D_ceiling")
+
+[node name="BossCompassKing" parent="." instance=ExtResource("3_boss")]
+position = Vector2(0, 30)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(-300, 40)
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
